@@ -2,13 +2,12 @@ library(YieldCurve)
 library(animation)
 library(lubridate)
 library(XML)
-library(mosaic)
 
 # Getting yield curve data through 2012
 data(FedYieldCurve)
 
 # Pull 2013 and 2014 data separately from Google Docs (Source U.S. Treasury)
-end_curve <- fetchGoogle("https://docs.google.com/spreadsheets/d/1Yc3Og9g0Ko_SMh6l0EEZcqIQ85godDxgpnkbfK_N-Gk/export?format=csv&id")
+end_curve <- read.csv('yc.csv')
 
 # Change formatting to xts and combine with FedYieldCurve data
 end_curve$Date <- as.POSIXct(as.character(end_curve$Date), format="%m/%d/%Y")
